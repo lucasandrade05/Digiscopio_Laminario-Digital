@@ -1,0 +1,45 @@
+-- By default this file is used by `parseRoutesFile` in Foundation.hs
+-- Syntax for this file here: https://www.yesodweb.com/book/routing-and-handlers
+/static StaticR Static appStatic
+
+/favicon.ico FaviconR GET
+/robots.txt RobotsR GET
+
+/ HomeR GET
+
+
+/explorar/#Int                                  ExplorarR       GET
+
+/login                                          LoginR          GET POST
+/logout                                         LogoutR         POST
+/cadastrarusuario                               CadUserR        POST
+
+/admcontrol/users/#Int                          AdmControlR     GET
+/admcontrol/del/#UsuarioId/#Int                 AdmDelUserR     POST
+/admcontrol/edit/#UsuarioId/#Int                AdmEditUserR    POST
+
+/perfil/#UsuarioId                              PerfilR         GET
+/perfil/deletar/#UsuarioId                      DelUserR        POST
+/perfil/editar/#UsuarioId                       EditUserR       POST
+
+/laminas/cadastro                               CadLaminaR      GET POST
+/laminas/cadastro/#LaminaId/zooms               CadZoomR        POST
+/laminas/cadastro/#ZoomId/destaques             CadHighlightR   POST 
+/laminas/visualizar/#LaminaId                   VerLaminaR      GET
+/laminas/visualizar/#LaminaId/#Text             VerLaminaCR     GET
+/laminas/visualizar/#LaminaId/#Text/#ZoomId     VerLaminaVR     GET
+/laminas/editar/#LaminaId                       EditarLaminaR   POST
+/laminas/deletar/laminas/#LaminaId              DelLaminaR      POST
+/laminas/deletar/imagens/#ZoomId                DelZoomR        POST
+/laminas/deletar/destaques/#HighlightId         DelHLR          POST
+
+/userhome/pastas                                PastasR         GET POST
+/userhome/pastas/#PastaId                       ConteudoR       GET POST
+/userhome/pastas/add/#PastaId/#LaminaId         AddConteudoR    GET
+/userhome/pastas/edit/#PastaId                  EditPastaR      POST
+/userhome/pastas/delete/#PastaId                DelPastaR       POST
+/userhome/pastas/deletee/#ConteudoId            DelPastR        POST
+
+/pesquisar/                                     PesqR           POST
+/pesquisar/l/#Text/#Int                         BuscarLaminaR   GET
+/pesquisar/u/#Text/#Int                         BuscarUserR     GET

@@ -1,0 +1,234 @@
+<div class="container-fluid" style="background-color:#000033">
+  <style>
+          a{
+            text-decoration:none;
+            color: #202020;
+           }
+          a:hover{
+            text-decoration:underline;
+            color: #505050;
+           }
+          .tooltip2 {
+              position: relative;
+              display: inline-block;
+          }
+          
+          .tooltip2 .tooltiptext2 {
+              visibility: hidden;
+              background-color:white;
+              opacity: 1;
+              text-align: center;
+              border-radius: 6px;
+              padding: 1% 1% 1% 1%;
+              position: absolute;
+              z-index: 1;
+              bottom: 1%;
+              top: 1%;
+              left: 60%;
+              width: 150%;
+              margin-left: -85%;
+          }
+          
+          .tooltip2:hover .tooltiptext2 {
+              visibility: visible;
+          } </style>
+            <script>editpast = [];</script>
+            <script>delpast = [];</script>
+            <script>dellam = [];</script>
+  <h4> <font color="white"><b>Você está em : ^{caminhoRaiz $ pid}</b></font></h4>
+  <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="background-color:#FDFDFD; border-radius:2px; padding-top:1%"> 
+   <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12" style="border-right:1px solid #CFCFCF">
+    <a href=@{PerfilR usuario}>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" id="userpic" style="text-align:center; padding:1%;">
+          $maybe imguser <- map entityVal imagem    
+            <img src="/static/usuarios/#{imguserNmimg imguser}" style="max-width:175px; width:100%; height:auto"></img>
+          $nothing
+            <img src="/static/images/default/anonimo.jpg" style="max-width:175px; width:100%; height:auto"></img>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" id="usernome" style="text-align: left; padding: 1%">
+             <hr>
+             <h5>Nome: #{usuarioNome proprietario}
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" id="userlogin" style="text-align: left; padding: 1%">
+             <h5>Login: #{usuarioLogin proprietario}</a>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" id="userbio" style="text-align: justify; padding: 1%">
+         $maybe bio <- usuarioBiografia proprietario
+             <hr>
+             Biografia:
+             <p align="left">#{bio}
+         <hr>  
+    <div class="col-lg-offset 3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
+        <center><button type="button" onclick="mudaconteudo()"><img src="/static/images/default/folder.png"  width=100% style="max-width:50px; height:auto"></img>
+
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <center><a onclick="mudaconteudo()">Todas as Laminas</a>
+        <hr>
+    $maybe loguei <- userlogado
+      $if (loguei == (usuarioLogin proprietario)) || (loguei == "admin")
+         <hr>
+         <div id="add" class="col-md-6 col-lg-6 col-sm-6 col-xs-6" style="padding:1%">
+          <center>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+             <button type="button" data-toggle="modal" data-target="#modaddpasta"><img src="/static/images/default/add.png" width=100% style="max-width:50px; height:auto"></img></button>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+             <h6><center><a data-target="#modaddpasta">Criar Pasta</a>
+             <hr>
+            
+         
+         <!--Add laminas-->
+         <div id="addlampast" class="col-md-6 col-lg-6 col-sm-6 col-xs-6" style="padding:1%">
+          <center>
+             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                 <button type="button" data-toggle="modal" data-target="#moddaddpastalamina"><img src="/static/images/default/add.png" width=100% style="max-width:50px; height:auto"></img></button>
+             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                 <h6><center><a data-target="#moddaddpastalamina">Inserir Lamina</a>
+                 <hr>
+
+
+   <div id="conteudoraiz2" style="display:none" class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       <div class="row">
+           <button type="button" class="close" onclick="voltaconteudo()">&times;</button>
+           <center><h3>Todas as lâminas cadastradas por #{usuarioLogin proprietario}</h3></center>
+           <hr>
+       <div class="row">
+       $forall (Entity lamid lam) <- lamlist
+         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" style="padding:1%">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:1%"> 
+            <a href="@{VerLaminaR lamid}">
+             <button><img src="/static/images/default/lamina.jpg" style="max-width:150px; width:100%; height:auto"></img></button></a>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:1%">
+             <h4><center><a href="@{VerLaminaR lamid}">#{laminaTitulo lam}</a>   
+             
+   <div id="conteudoraiz" class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
+        $forall (Entity chave conteudo) <- content 
+              $maybe ehLamina <- conteudoIdlam conteudo 
+                <div class="col-md-2 col-lg-2 col-sm-3 col-xs-6" style="padding:1%">
+                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="padding:1%">
+                        <button onclick="window.location.href='@{VerLaminaR ehLamina}'"><img src="/static/images/default/lamina.jpg" style="max-width:150px; width:100%; height:auto"></img></button>
+                        $maybe loguei <- userlogado
+                         $if (loguei == (usuarioLogin proprietario)) || (loguei == "admin")
+                           <li class="dropdown" style="vertical-align:top; position: absolute; top:1%">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="/static/images/default/gear.png" width=15px height=15px></a>
+                            <ul class="dropdown-menu" style="background-color:white">
+                               <li><a type="button" data-toggle="modal" data-target="#dellamm" onclick="dellam[#{fromSqlKey ehLamina}]()">Excluir da Pasta</a>
+                               <script> dellam[#{fromSqlKey ehLamina}] = function () {
+                                                    document.getElementById('dellamtit').innerHTML = "^{tituloLam $ ehLamina}";
+                                                    document.getElementById('formdellam').action = "@{DelPastR chave}";
+                                                 };</script>
+                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <center>
+                         <div class="tooltip2">
+                          <div style="font-size:16px; max-width:120px; height:50px; white-space: auto; overflow: hidden; text-overflow: ellipsis; text-align:center; padding-top:1%; border-sizing:border-box"><a href=@{VerLaminaR ehLamina}>^{tituloLam $ ehLamina}</a>
+                          <span class="tooltiptext2" style="font-size:16px; text-align:center"><a href=@{VerLaminaR ehLamina}>^{tituloLam $ ehLamina} </a></span>
+              $maybe ehPasta <- conteudoIdpast conteudo
+                <div class="col-md-2 col-lg-2 col-sm-3 col-xs-6" style="padding:1%">
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="padding:1%">
+                    <button onclick="window.location.href='@{ConteudoR ehPasta}'">
+                        <img src="/static/images/default/folder.png"  style="max-width:150px; width:100%; height:auto; position:relative"></img></button>
+                    $maybe loguei <- userlogado
+                     $if (loguei == (usuarioLogin proprietario)) || (loguei == "admin")
+                       <li class="dropdown" style="vertical-align:top; position: absolute; top:1%">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="/static/images/default/gear.png" width=15px height=15px></a>
+                        <ul class="dropdown-menu" style="background-color:white">
+                           <li><a type="button" data-toggle="modal" data-target="#editpast" onclick="editpast[#{fromSqlKey ehPasta}]()">Editar</a>
+                           <li><a type="button" data-toggle="modal" data-target="#delpast" onclick="delpast[#{fromSqlKey ehPasta}]()">Excluir</a>
+                           <script>
+                                                 delpast[#{fromSqlKey ehPasta}] = function () {
+                                                    document.getElementById('pastit').innerHTML = "^{tituloPasta $ ehPasta}";
+                                                    document.getElementById('formdel').action = "@{DelPastaR ehPasta}";
+                                                 };
+                                                 editpast[#{fromSqlKey ehPasta}] = function () { 
+                                                    document.getElementById('formedit').action = "@{EditPastaR ehPasta}";
+                                                    document.getElementById('pastanovonome').value = "^{tituloPasta $ ehPasta}";
+                                                    document.getElementById('pastit').innerHTML = "^{tituloPasta $ ehPasta}";
+                                                     };</script>
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <center>
+                     <div class="tooltip2">
+                      <div style="font-size:16px; max-width:120px; height:50px; white-space: auto; overflow: hidden; text-overflow: ellipsis; text-align:center; padding-top:1%; border-sizing:border-box"><a href=@{ConteudoR ehPasta}>^{tituloPasta $ ehPasta}</a>
+                      <span class="tooltiptext2" style="font-size:16px; text-align:center"><a href=@{ConteudoR ehPasta}>^{tituloPasta $ ehPasta}</a></span>
+                     
+ <div id="modaddpasta" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+            
+                <!-- Modal Conteudo-->
+                <div class="modal-content">
+                 <form action=@{ConteudoR pid} role="form" enctype=multipart/form-data method="POST">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">ADICIONAR PASTA</h4>
+                  <div class="modal-body">
+                    
+                      ^{widget}
+                      
+                  <div class="modal-footer">
+                    <input type="submit" tabindex="4" class="btn btn-success" value="Cadastrar Pasta"></input></form>
+
+ <div id="moddaddpastalamina" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+            
+                <!-- Modal Conteudo-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center><h4 class="modal-title">Clique em uma de suas laminas abaixo:</h4>
+                  <div class="modal-footer">
+                   <center>
+                    $forall (Entity lamid lamina) <- lamlist
+                     ^{addlaminaconteudo lamid pid}
+ <form id="formedit" action="#" method="post" enctype="multipart/form-data" class="form">
+   <div id="editpast" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Alterar nome da pasta <b id="pastit"></b></h4>
+                    <div class="modal-body" style="box-sizing:border-box">
+                            <label>Novo nome para pasta: </label>
+                            <input type="text" id="pastanovonome" name="pastanova" class="form-control"  value="#" required></input>
+                    <div class="modal-footer">
+                           <input type="submit"  class="btn btn-warning" value="Enviar"></input></form>
+
+ <div id="delpast" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                   <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-header" style="box-sizing:border-box">  
+                     <h4><center>Tem certeza que deseja deletar a pasta <b id="pastit"></b>?</center></h4>
+                     <h6><center>OBS: Todos os diretórios que estão dentro serão deletados também.</center></h6>
+                     <h6><center>(Não se preocupe, as lâminas não serão deletadas).</center></h6>
+                    <div class="modal-footer">
+                        <center>
+                          <div class="col-lg-offset-3 col-lg-3 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4 col-xs-offset-1 col-xs-5" id="del1">
+                           <form action="#" id="formdel" method="post" enctype="multipart/form-data">
+                            <input type="submit"  class="btn btn-success" value="Sim" style="margin:2%; width:100%"></input>
+                          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" id="del1">
+                           <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin:2%; width:100%">Não</button></form>
+                           
+ <div id="dellamm" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                   <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-header" style="box-sizing:border-box">  
+                     <h4><center>Tem certeza que deseja deletar <b id="dellamtit"></b> desta pasta?</center></h4>
+                     <h6><center>OBS: A lâmina será apagada apenas desta pasta.</center></h6>
+                     <h6><center>(Para deleta-la por completo, abra-a, clique na engrenagem e depois em deletar.</center></h6>
+                    <div class="modal-footer">
+                        <center>
+                          <div class="col-lg-offset-3 col-lg-3 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4 col-xs-offset-1 col-xs-5" id="del1">
+                           <form action="#" id="formdellam" method="post" enctype="multipart/form-data">
+                            <input type="submit"  class="btn btn-success" value="Sim" style="margin:2%; width:100%"></input>
+                          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" id="del1">
+                           <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin:2%; width:100%">Não</button></form>
+
+
+ <script>function mudaconteudo(){
+                        document.getElementById("conteudoraiz").style.display="none";
+                        document.getElementById("conteudoraiz2").style.display="block";
+                };
+         function voltaconteudo(){
+                        document.getElementById("conteudoraiz").style.display="block";
+                        document.getElementById("conteudoraiz2").style.display="none";
+                };</script>

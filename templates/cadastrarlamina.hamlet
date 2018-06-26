@@ -1,0 +1,20 @@
+<body style="background-color:#000033">
+<div class="container" style="background-color:#000033">
+   <div class="col-md-6 col-md-offset-3" style="background-color:#000033">
+    <div class="panel panel-login">
+     <div class="panel-body">
+      <div class="row">
+       <br>
+       <center><h3>Cadastre sua Lâmina!</h3></center>
+       <center><h4>Insira os dados:</h4></center>
+       <div class="col-lg-12">
+
+         <form action=@{CadLaminaR} method=POST role="form" enctype=#{enctype}>
+           ^{widget}
+           <div class="form-group">
+            <div class="row">
+             <div class="col-sm-6 col-sm-offset-3">
+              <br>
+              <p align="center"><input type="submit" class="btn btn-success" value="Cadastrar Lâmina"></input></form>
+              
+              

@@ -1,0 +1,86 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" style="position:relative">
+    <style>@media (max-width: 902px) {
+          .navbar-header {
+              float: none;
+          }
+          .navbar-left,.navbar-right {
+              float: none !important;
+          }
+          .navbar-toggle {
+              display: block;
+          }
+          .navbar-collapse {
+              border-top: 1px solid transparent;
+              box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+          }
+          .navbar-fixed-top {
+              top: 0;
+              border-width: 0 0 1px;
+          }
+          .navbar-collapse.collapse {
+              display: none!important;
+          }
+          .navbar-nav {
+              float: none!important;
+              margin-top: 7.5px;
+          }
+          .navbar-nav>li {
+              float: none;
+          }
+          .navbar-nav>li>a {
+              padding-top: 10px;
+              padding-bottom: 10px;
+          }
+          .collapse.in{
+              display:block !important;
+          }
+         };</style>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      <a class="navbar-brand" href="@{HomeR}">DIGISCÓPIO
+      
+      
+      
+    <div class="collapse navbar-collapse" id="myNavbar">
+        
+      <ul class="nav navbar-nav">
+      <form id="pesquisar" action=@{PesqR} method=post class="navbar-form navbar-left" onkeypress="return event.keyCode != 13;">
+           <div class="input-group">
+            <input type="text" class="form-control" placeholder="Digite sua pesquisa" size=40 name="pesquisa" onkeydown="if (event.keyCode == 13) document.getElementById('pes').click()" required>
+            <div class="input-group-btn">
+             <button type="button" id="pes" data-toggle="modal" data-target="#select" class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span></button>
+
+        
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="@{ExplorarR 1}">Explorar</a></li>
+        $maybe logado <- userlogado
+         $if logado /= "admin"
+          <li class="dropdown">
+           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gerir Conteúdo<span class="caret"></span></a>
+           <ul class="dropdown-menu" style="background-color:#BFBFBF">
+              <li><a style="color:#151515" href="@{CadLaminaR}">Cadastrar Lamina</a>
+              <li><a style="color:#151515" href="@{PastasR}">Minhas Pastas</a>
+          <li>^{myProfile $ logado}
+         $else
+          <li><a href=@{AdmControlR 1}>Usuários</a></li>
+         <li><form action=@{LogoutR} method=post><input type="submit" class="dropbtn" value="SAIR"></input></form></li>
+    
+        $nothing
+         <li><a href="@{LoginR}"><span class="glyphicon glyphicon-log-in"> </span> Entrar</a></li>
+<div id="select" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">  
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Filtre sua pesquisa:</h4>
+      <div class="modal-body" style="box-sizing:border-box">
+        <label>Selecione: </label>
+        <select class="form-control" form="pesquisar" name="opc" tabindex="2" required>
+           <option value="laminas">Pesquisar por Lâminas</option>
+           <option value="usuarios">Pesquisar por Usuários</option></select>
+      <div class="modal-footer">
+        <input type="submit" form="pesquisar" class="btn btn-primary" value="Enviar Pesquisa"></input>

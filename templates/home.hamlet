@@ -1,0 +1,58 @@
+<div class="container-fluid" style="background-color:#000033">
+  <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"> 
+   <style>
+    @media screen and (min-width: 501px) {
+      div.example {
+        font-size: 18px;
+      }
+     }
+    
+    @media screen and (max-width: 500px) {
+      div.example {
+        font-size: 16px;
+        text-align:left;
+       }</style>
+   <div class="panel panel-default">
+    <div class="panel-body">
+      <center>
+          <h1>Bem vindo ao Digiscópio!</h1>
+          <hr>
+          <div class="col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-sm-12">
+           <div class="example"  style="box-sizing:border-box">
+            <p>Este é um espaço desenvolvido com o propósito de ajudar no aprendizado das pessoas que querem conhecer mais sobre Histologia, Microbiologia e outros estudos do mundo microscópico.
+            <br>
+            <p>Por favor, se você deseja iniciar sua jornada por esse mundo, utilize o nosso sistema de busca ou o botão ‘Explorar’ no menu acima.
+            <br>
+            $maybe username <- userlogado
+                $if username /= "admin"
+                 <p>Seja bem-vindo caro colaborador #{username} ! Estaremos sempre trabalhando duro para que você tenha cada vez mais facilidades e funcionalidades em nosso sistema.
+            $maybe admin <- userlogado
+                $if admin == "admin"
+                 <p align="center">Bem vindo novamente, Administrador!
+            $nothing
+             <p>Se você deseja compartilhar seus conhecimentos, por gentileza, cadastre-se através do botão abaixo e comece já a publicar suas lâminas!
+    <div class="panel-footer" class="col-md-12 col-xs-12 col-sm-12">
+     <br>
+       $maybe username <- userlogado
+        <hr>
+       $nothing
+        <center>
+         <button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-success">Cadastre-se!</button>
+         <!-- Modal -->
+        <div id="myModal3" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+        
+            <!-- Modal Conteudo-->
+            <div class="modal-content">
+             <form action=@{CadUserR} role="form" enctype=multipart/form-data method="POST">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Insira os dados para efetuar o cadastro:</h4>
+              <div class="modal-body" style="box-sizing:border-box">
+                
+                  ^{widget3}
+                  
+              <div class="modal-footer">
+                <input type="submit" tabindex="4" class="btn btn-success" value="Enviar Dados"></input></form>
+            
+    

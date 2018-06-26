@@ -1,0 +1,64 @@
+-- By default this file is used by `persistFileWith` in Model.hs (which is imported by Foundation.hs)
+-- Syntax for this file here: https://github.com/yesodweb/persistent/blob/master/docs/Persistent-entity-syntax.md
+
+Usuario
+    nome        Text
+    email       Text
+    login       Text
+    senha       Text
+    biografia   Textarea Maybe
+    ocultar     Bool
+    raiz        PastaId
+    UniqueLogin login
+    deriving Show
+
+Conteudo
+    idpasta     PastaId
+    idpast      PastaId Maybe
+    idlam       LaminaId Maybe
+
+Pasta
+    nome        Text
+    root        PastaId Maybe
+    usuario     UsuarioId Maybe
+    deriving Show
+    
+Lamina 
+    titulo      Text
+    descricao   Textarea
+    usuario     UsuarioId
+    deriving Show
+    
+Zoom
+    corte       Text
+    ampliacao   Int
+    coloracao   Text
+    descricao   Textarea
+    lamina      LaminaId
+    usuario     UsuarioId
+    deriving Show
+    
+Highlight 
+    titulo      Text
+    descricao   Textarea
+    zoom        ZoomId
+    usuario     UsuarioId
+    deriving Show
+    
+Imguser
+    nmimg           String
+    iduser          UsuarioId Maybe
+    UniqueImgUser   nmimg
+    deriving Show
+
+Imgzoom
+    nmimg           String
+    idzoom          ZoomId Maybe
+    UniqueImgZoom   nmimg
+    deriving Show
+    
+Imghl
+    nmimg           String
+    idhl            HighlightId Maybe
+    UniqueImgHl     nmimg
+    deriving Show

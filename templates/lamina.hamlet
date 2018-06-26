@@ -1,0 +1,319 @@
+<div class="container-fluid">
+   
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" id="foto">
+    <div class="row visible-xs visible-sm">
+     <div class="container-fluid">
+      <style>.tooltip2 {position: relative;
+         display: inline-block;
+         width:100%;}
+         .tooltip2 .tooltiptext2 {visibility: visible;
+         background-color:black;
+         opacity: 0.00;
+         text-align: center;
+         border-radius: 6px;
+         padding: 1% 1% 1% 1%;
+         position: absolute;
+         width:80%;
+         
+         z-index: 1;
+         bottom: 1%;
+         }
+                 .tooltip2:hover .tooltiptext2 {visibility: visible;
+         opacity:0.90;} </style>
+       <table>
+        <tr>
+         <td width="100%">
+           
+             $maybe user <- userlogado
+              $if (user == (usuarioLogin usuario)) || (user == "admin")
+               <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="/static/images/default/gear.png" width=15px height=15px style="vertical-align:top"></a>
+                <ul class="dropdown-menu" style="background-color:white">
+                   <li><a type="button" data-toggle="modal" data-target="#adicionar">Adicionar</button>
+                   <li><a type="button" data-toggle="modal" data-target="#editar">Editar</button>
+                   <li><a type="button" data-toggle="modal" data-target="#excluir">Excluir</button>     
+             <h2>#{laminaTitulo lamina} 
+         <td style="text-align:right"><h5>por <a href=@{PerfilR (laminaUsuario lamina)}>^{userByLamina $ (laminaUsuario lamina)}
+      <hr>   
+    <script>ativaHL = [];
+            desativaHL = [];</script>
+    <div class="row visible-xs visible-sm" style="position:relative; z-index:1; margin-right:-1%; text-align:right">
+     $forall (Entity pid zun) <- zooms
+       $if (zoomAmpliacao zun) == (zoomAmpliacao zom)
+         <button type="button" class="btn btn-default" style="width:70px; text-align:central; margin-left: 5px"><span class="glyphicon glyphicon-zoom-in"></span>#{zoomAmpliacao zun}x</button>
+       $else
+         <a href=@{VerLaminaVR laminaid corte pid}><button type="button" class="btn btn-primary" style="width:70px; text-align:central; margin-left: 5px"><span class="glyphicon glyphicon-zoom-in"></span>#{zoomAmpliacao zun}x</button></a>
+    <div class="row">
+     <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+      <div id="Foto" style="position:relative">
+       <center>
+        $forall (Entity pid pic) <- imagem
+         <div class="hidden-xs hidden-sm">
+           <a data-toggle="modal" data-target="#imgamp"><img id="fotoo" src="/static/zoom/#{imgzoomNmimg pic}" border=1 width=100% style="max-width:700px; max-height:500px; z-index:0"></img></a>
+         <div class="hidden-md hidden-lg">
+           <img id="fotoo" src="/static/zoom/#{imgzoomNmimg pic}" border=1 width=100% style="max-width:700px; max-height:500px; z-index:0"></img>
+     <div class="col-lg-1 col-md-1 hidden-xs hidden-sm">   
+      <div style="position:relative; top:1px; z-index:1" id="ampliacoes">
+       $forall (Entity pid zun) <- zooms
+        $if (zoomAmpliacao zun) == (zoomAmpliacao zom)
+         <button type="button" class="btn btn-default" style="width:70px; text-align:central; margin-left: 5px"><span class="glyphicon glyphicon-zoom-in"></span>#{zoomAmpliacao zun}x</button>
+         <br>
+        $else
+         <a href=@{VerLaminaVR laminaid corte pid}><button type="button" class="btn btn-primary" style="width:70px; text-align:central; margin-left: 5px"><span class="glyphicon glyphicon-zoom-in"></span>#{zoomAmpliacao zun}x</button></a>
+         <br>
+    <div class="row">
+     <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" style="position:relative; margin-left:5%" id="destaques">
+      <div class="row" id="titulo" style="white-space:auto; font-size:12px; font-align:right">
+       #{laminaTitulo lamina} > #{zoomCorte zom} > Ampliação #{zoomAmpliacao zom}x >    
+      $forall (Entity hid high) <- highlights
+       $forall (Entity pid pic) <- imagem
+         <button type="button" class="btn btn-primary" id="btnhigh[#{fromSqlKey hid}]" onclick="ativaHL[#{fromSqlKey hid}]()">#{highlightTitulo high}</button>
+         <button type="button" class="btn btn-default" style="display:none" id="btnhighdes[#{fromSqlKey hid}]" onclick="desativaHL[#{fromSqlKey hid}]()">Desativar</button>
+           <script>
+                   ativaHL[#{fromSqlKey hid}] = function () {
+                        document.getElementById('textooo').innerHTML = '<p>    #{highlightDescricao high}';
+                        document.getElementById('desmodal').innerHTML = '#{highlightDescricao high}';
+                        document.getElementById('titulo').innerHTML = ('#{laminaTitulo lamina} > #{zoomCorte zom} > Ampliação #{zoomAmpliacao zom}x > #{highlightTitulo high}');
+                        document.getElementById('fotoo').src = "^{hlById $ hid}";
+                        document.getElementById('fotooo').src = "^{hlById $ hid}";
+                        document.getElementById('del1').className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+                        document.getElementById('del2').className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+                        document.getElementById('del3').className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+                        document.getElementById('fhl').action = "@{DelHLR hid}"
+                        document.getElementById('hlnm').innerHTML = "#{highlightTitulo high}"
+                        document.getElementById('btnhigh[#{fromSqlKey hid}]').style.display = "none";
+                        document.getElementById('btnhighdes[#{fromSqlKey hid}]').style.display = "inline-block";
+                        document.getElementById('del3').innerHTML = '<button type="button" data-toggle="modal" data-target="#delhl" class="btn btn-danger" style="margin:1%; white-space:inherit; height:55px; width:100%">#{highlightTitulo high}'
+                        document.getElementById('edithl').innerHTML = ' <hr>' +
+                                                                      '  <center> '+
+                                                                      '    <h3> ' +
+                                                                      '     <div id="tithl" onclick="destk()">#{highlightTitulo high}  <span class="caret"></span></div> ' +
+                                                                      '     <div id="tithl2" onclick="destkk()" style="display:none">#{highlightTitulo high} <span class="dropup"><span class="caret"></span></span></div></h3></center> ' +
+                                                                      '  <div id="destak" style="display:none">' +
+                                                                      '   <label>Título do Destaque:</label> ' +
+                                                                      '   <input type="text" class="form-control" value=#{highlightTitulo high} name="edithltit" required></input> ' +
+                                                                      '   <input type="hidden" name="hlid" value=#{fromSqlKey hid} required></input> '+
+                                                                      '   <label>Descrição do Destaque</label> ' +
+                                                                      '   <textarea class="form-control" style="resize:vertical" name="edithldes" required>#{highlightDescricao high}</textarea>' +
+                                                                      '   <label>Imagem nova para o destaque:</label>' +
+                                                                      '   <input type="file" name="fotohid" class="form-control-file"></input></div>';
+                    };  
+                    desativaHL[#{fromSqlKey hid}] = function (){
+                        document.getElementById('textooo').innerHTML = '<p>';
+                        document.getElementById('titulo').innerHTML = ('#{laminaTitulo lamina} > #{zoomCorte zom} > Ampliação #{zoomAmpliacao zom}x >');
+                        document.getElementById('fotoo').src = "/static/zoom/#{imgzoomNmimg pic}";
+                        document.getElementById('desmodal').innerHTML = '#{zoomDescricao zom}';
+                        document.getElementById('fotooo').src = "/static/zoom/#{imgzoomNmimg pic}";
+                        document.getElementById('del1').className = "col-lg-6 col-md-6 col-sm-6 col-xs-12";
+                        document.getElementById('del2').className = "col-lg-6 col-md-6 col-sm-6 col-xs-12";
+                        document.getElementById('del3').className = "";
+                        document.getElementById('fhl').action = "#";
+                        document.getElementById('hlnm').innerHTML = "#";
+                        document.getElementById('del3').innerHTML = '';
+                        document.getElementById('edithl').innerHTML = '';
+                        document.getElementById('btnhigh[#{fromSqlKey hid}]').style.display = "inline-block";
+                        document.getElementById('btnhighdes[#{fromSqlKey hid}]').style.display = "none";
+                    };               </script>
+       
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" id="conteudo" style="text-align:justify">
+    <div id="tituloconteudo" class="row visible-lg visible-md" style="text-align:left">
+     <table>
+      <tr>
+       <td width="450px">
+         <h2>#{laminaTitulo lamina}
+          $maybe user <- userlogado
+            $if (user == (usuarioLogin usuario)) || (user == "admin")
+               <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="/static/images/default/gear.png" width=15px height=15px style="vertical-align:top"></a>
+                <ul class="dropdown-menu" style="background-color:white; top:1%; left:150%">
+                   <li><a type="button" data-toggle="modal" data-target="#adicionar">Adicionar
+                   <li><a type="button" data-toggle="modal" data-target="#editar">Editar
+                   <li><a type="button" data-toggle="modal" data-target="#excluir">Excluir
+                        <!-- Modal -->
+
+                   
+                   
+                   
+       <td style="text-align:right"><h5>por <a href=@{PerfilR (laminaUsuario lamina)}>^{userByLamina $ (laminaUsuario lamina)}
+    <hr>
+     
+    <div id="cortess">
+     <h3>Cortes:</h3>
+     <div class="row" style="text-align:center">
+      $forall (Entity hid high) <- ctrans
+       <div class="col-lg-4 col-sm-4 col-xs-12 col-md-12"><a href=@{VerLaminaCR laminaid "Corte Transversal"}><button type="button" class="btn btn-default" style="width:100%; margin: 1%">Corte Transversal</button></a>
+      $forall (Entity hid high) <- clong
+       <div class="col-lg-4 col-sm-4 col-xs-12 col-md-12"><a href=@{VerLaminaCR laminaid "Corte Longitudinal"}><button type="button" class="btn btn-default" style="width:100%; margin: 1%">Corte Longitudinal</button></a>
+      $forall (Entity hid high) <- cobli
+       <div class="col-lg-4 col-sm-4 col-xs-12 col-md-12"><a href=@{VerLaminaCR laminaid "Corte Oblíquo"}><button type="button" class="btn btn-default" style="width:100%; margin: 1%">Corte Oblíquo</button></a>
+    <hr>
+    <div id="texto">
+     <h3>Descrição:</h3>
+     <p>   #{laminaDescricao lamina}
+    <div id="textoo">
+     <p>   #{zoomDescricao zom}
+    <div id="textooo">
+  
+ <div id="editar" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                      
+                          <!-- Modal Conteudo-->
+                         <form action=@{EditarLaminaR laminaid} method="post" enctype="multipart/form-data" class="form">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Insira os novos dados:</h4>
+                            <div class="modal-body" style="box-sizing:border-box">
+                                   <center>
+                                    <h3> 
+                                     <div id="titlam" onclick="lamin()">#{laminaTitulo lamina}  <span class="caret">
+                                     <div id="titlam2" onclick="laminn()" style="display:none">#{laminaTitulo lamina} <span class="dropup"><span class="caret">
+                                  
+                                   <div id="laminnn">
+                                    <label>Título da Lâmina: </label>
+                                    <input type="text" id="1" class="form-control" value=#{laminaTitulo lamina} name="editlamtit" required></input>
+                                    <label>Descrição da Lâmina:</label>
+                                    <textarea class="form-control" style="resize:vertical" name="editlamdes" required>#{laminaDescricao lamina}</textarea>                                   
+                                   <hr>
+                                   <center>
+                                    <h3>
+                                     <div id="titamp" onclick="ampliacaoo()">Ampliação #{zoomAmpliacao zom}x  <span class="caret">
+                                     <div id="titamp2" onclick="ampliacaooo()" style="display:none">Ampliação #{zoomAmpliacao zom}x <span class="dropup"><span class="caret">
+                                   <div id="ampliacao" style="display:none">
+                                    <label>Corte: </label>
+                                    <select class="form-control" name="editcorte" required>
+                                       <option value=#{zoomCorte zom} selected>#{zoomCorte zom}</option>
+                                       <option value="Corte Transversal">Corte Transversal</option>
+                                       <option value="Corte Longitudinal">Corte Longitudinal</option>
+                                       <option value="Corte Oblíquo">Corte Oblíquo</option></select>
+                                    <label>Ampliação:</label>
+                                    <input type="number" class="form-control" value=#{zoomAmpliacao zom} name="editamp" required></input>
+                                    <input type="hidden" name="zomid" value=#{fromSqlKey zid} required></input>
+                                    <label>Coloração:</label>
+                                    <input type="text" class="form-control" value=#{zoomColoracao zom} name="editcol" required></input>
+                                    <label>Descrição da Imagem:</label>
+                                    <textarea class="form-control" style="resize:vertical" name="editzomdes" required>#{zoomDescricao zom}</textarea>
+                                    <label>Imagem nova: </label>
+                                    <input type="file" name="fotozoom" class="form-control-file"></input>
+
+                                   <div id="edithl">
+                            <div class="modal-footer">
+                                   <input type="submit"  class="btn btn-primary" value="Editar"></input>
+ <div id="excluir" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Selecione o item a ser deletado: </h4>
+                            <div class="modal-footer" style="box-sizing:border-box">  
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="del1">
+                              <button type="button" data-toggle="modal" data-target="#dellamina" class="btn btn-danger" style="margin:1%; white-space:inherit; height:55px; width:100%">#{laminaTitulo lamina}
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="del2">
+                              <button type="button" data-toggle="modal" data-target="#delimg" class="btn btn-danger" style="margin:1%; white-space:inherit; height:55px; width:100%">Ampliação #{zoomAmpliacao zom}x
+                             <div id="del3">
+ <div id="dellamina" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                           <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="modal-header" style="box-sizing:border-box">  
+                             <h5><center>Tem certeza que deseja deletar #{laminaTitulo lamina} e todos seus componentes?</center></h5>
+                            <div class="modal-footer">
+                                <center>
+                                  <div class="col-lg-offset-3 col-lg-3 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4 col-xs-offset-1 col-xs-5" id="del1">
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin:2%; width:100%">Não</button>
+                                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" id="del1">
+                                   <form action=@{DelLaminaR laminaid} method="post" enctype="multipart/form-data">
+                                    <input type="submit"  class="btn btn-success" value="Sim" style="margin:2%; width:100%"></input></form>
+ <div id="delimg" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                           <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="modal-header" style="box-sizing:border-box">  
+                             <h5><center>Tem certeza que deseja deletar a Ampliação #{zoomAmpliacao zom}x e todos seus componentes?</center></h5>
+                            <div class="modal-footer">
+                                <center>
+                                  <div class="col-lg-offset-3 col-lg-3 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4 col-xs-offset-1 col-xs-5" id="del1">
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin:2%; width:100%">Não</button>
+                                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" id="del1">
+                                   <form action=@{DelZoomR zid} method="post" enctype="multipart/form-data">
+                                    <input type="submit"  class="btn btn-success" value="Sim" style="margin:2%; width:100%"></input></form>
+ <div id="delhl" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                           <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="modal-header" style="box-sizing:border-box">  
+                             <h5><center>Tem certeza que deseja deletar o destaque <h5 id='hlnm'></h5>?</center></h5>
+                            <div class="modal-footer">
+                                <center>
+                                  <div class="col-lg-offset-3 col-lg-3 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4 col-xs-offset-1 col-xs-5" id="del1">
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin:2%; width:100%">Não</button>
+                                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" id="del1">
+                                   <form id="fhl" action=# method="post" enctype="multipart/form-data">
+                                    <input type="submit"  class="btn btn-success" value="Sim" style="margin:2%; width:100%"></input></form>
+ <div id="adicionar" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Selecione uma das opções abaixo: </h4>
+                            <div class="modal-footer" style="box-sizing:border-box">  
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="add1">
+                              <button type="button" data-toggle="modal" data-target="#addamp" class="btn btn-default" style="margin:1%; white-space:inherit; height:55px; width:100%">Adicionar ampliação diferente
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="add2">
+                              <button type="button" data-toggle="modal" data-target="#addhl" class="btn btn-default" style="margin:1%; white-space:inherit; height:55px; width:100%">Adicionar destaque para a Ampliação #{zoomAmpliacao zom}x
+                             <div id="del3">
+ <div id="addamp" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                           <form action=@{CadZoomR laminaid} role="form" enctype=multipart/form-data method="POST">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Insira os dados </h4>
+                            <div class="modal-body">
+                               ^{formzom}
+                            <div class="modal-footer" style="box-sizing:border-box">  
+                             <p align="center"><input type="submit" tabindex="4" class="btn btn-success" value="Cadastrar Imagem"></input></form>
+ <div id="addhl" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                           <form action=@{CadHighlightR zid} role="form" enctype=multipart/form-data method="POST">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Insira os dados </h4>
+                            <div class="modal-body">
+                               ^{formhl}
+                            <div class="modal-footer" style="box-sizing:border-box">  
+                             <p align="center"><input type="submit" tabindex="4" class="btn btn-success" value="Cadastrar Imagem"></input></form>
+ <div class="modal fade" id="imgamp" role="dialog">
+  <div class="modal-dialog" style="width:90%; text-align:center">
+   <div style="width:100%" class="row">
+    <button class="close" type="button" data-dismiss="modal" style="opacity:1; text-shadow:5px 5px #303030;color:white">x</button>
+    $forall (Entity pid pic) <- imagem
+      <img id="fotooo" src="/static/zoom/#{imgzoomNmimg pic}" border="1" width="80%" height="80%" style="position:relative; max-height:650px"></img>
+    <div class="tooltip2" style="top:-10px">
+     <span class="tooltiptext2" style="font-size:16px; max-height:150px; text-align:center;overflow-y:auto; position:absolute;bottom:1%; left:9.25%">
+      <b id="desmodal" style="color:white">#{zoomDescricao zom}</b></span>
+   
+                                    
+                                    
+ <script> function ampliacaoo() { document.getElementById('ampliacao').style.display = "block";
+                                  document.getElementById('titamp').style.display = "none"
+                                  document.getElementById('titamp2').style.display = "block";}
+          function ampliacaooo() {document.getElementById('ampliacao').style.display = "none";
+                                  document.getElementById('titamp').style.display = "block"
+                                  document.getElementById('titamp2').style.display = "none";}
+          function lamin() {document.getElementById('laminnn').style.display = "none";
+                                  document.getElementById('titlam').style.display = "none"
+                                  document.getElementById('titlam2').style.display = "block";}
+          function laminn() {document.getElementById('laminnn').style.display = "block";
+                                  document.getElementById('titlam').style.display = "block"
+                                  document.getElementById('titlam2').style.display = "none";}
+          function destk() {document.getElementById('destak').style.display = "block";
+                                  document.getElementById('tithl').style.display = "none"
+                                  document.getElementById('tithl2').style.display = "block";}
+          function destkk() {document.getElementById('destak').style.display = "none";
+                                  document.getElementById('tithl').style.display = "block"
+                                  document.getElementById('tithl2').style.display = "none";}</script>
